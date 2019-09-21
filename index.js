@@ -79,6 +79,6 @@ app.get('/info', (request, response)=>{
   response.status(200).send(`<p>Phonebook has info for ${persons.length} people</p> <p>${timestamp}</p>`)
 })
 
-app.listen(3001, ()=>{
+app.listen(PORT, ()=>{
   console.log(`Server listening at port ${PORT}`)
 })
