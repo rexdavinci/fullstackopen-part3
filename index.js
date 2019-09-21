@@ -80,5 +80,5 @@ app.get('/info', (request, response)=>{
 })
 
 app.listen(3001, ()=>{
-  `Server listening at port ${PORT}`
+  console.log(`Server listening at port ${PORT}`)
 })
