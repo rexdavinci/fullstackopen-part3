@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:ui":"rm -rf build && cd ../fullstackopen/part2/phonebook && npm run build --prod && cp -r build ../../../fullstackopen-part3/",
+    "build:ui": "rm -rf build && cd ../fullstackopen/part2/phonebook && npm run build --prod && cp -r build ../../../fullstackopen-part3/",
     "deploy": "git push heroku master",
-    "deploy:full":"npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
-    "logs:prod":"heroku logs --tail",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
+    "logs:prod": "heroku logs --tail",
     "watch": "nodemon index.js",
     "start": "node index.js"
   },
@@ -29,5 +29,8 @@
     "mongoose": "^5.7.1",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.4.0"
   }
 }

@@ -25,31 +25,7 @@ app.use(express.json())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 app.use(cors())
 
-
-// let persons = [
-//     {
-//       "name": "Arto Hellas",
-//       "number": "040-123456",
-//       "id": 1
-//     },
-//     {
-//       "name": "Ada Lovelace",
-//       "number": "39-44-5323523",
-//       "id": 2
-//     },
-//     {
-//       "name": "Dan Abramov",
-//       "number": "12-43-234345",
-//       "id": 3
-//     },
-//     {
-//       "name": "Mary Poppendieck",
-//       "number": "39-23-6423122",
-//       "id": 4
-//     }
-//   ]
-
-app.get('/api/persons', (request, response)=>{
+app.get('/api/persons', (request, response, next)=>{
   Person.find({}).then(persons=>{
     response.json(persons)
   }).catch(error=>next(error))
@@ -71,14 +47,12 @@ app.post('/api/persons', (request, response, next)=>{
   const {body} = request
   if(!body.name){
     return response.status(400).json({
-      error: `'name' property is missing for this entry`
+      error: '"name" property is missing for this entry'
     })
   }else if(!body.number){
     return response.status(400).json({
       error: ` 'number' property is missing for entry '${body.name}'`
     })
-  }else if(!body.name && !body.number){
-    next(error)
   }
   const newPerson = new Person({
     name: body.name,
@@ -111,7 +85,7 @@ app.put('/api/persons/:id', (request, response, next)=>{
 })
 
 
-app.delete('/api/persons/:id', (request, response)=>{
+app.delete('/api/persons/:id', (request, response, next)=>{
   Person.findByIdAndDelete(request.params.id)
   .then(person=>{
     response.status(204).end()
@@ -119,9 +93,12 @@ app.delete('/api/persons/:id', (request, response)=>{
   .catch(error=>next(error))
 })
 
-app.get('/info', (request, response)=>{
+app.get('/info', (request, response, next)=>{
   const timestamp = new Date()
-  response.status(200).send(`<p>Phonebook has info for ${persons.length} people</p> <p>${timestamp}</p>`)
+  Person.find({}).then(persons=>{
+    response.status(200).send(`<p>Phonebook has info for ${persons.length} people</p> <p>${timestamp}</p>`)
+  })
+  .catch(error=>next(error))
 })
 
 
