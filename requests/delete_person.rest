@@ -1,1 +1,4 @@
-DELETE http://localhost:3001/api/persons/3
+DELETE http://localhost:3001/api/persons/5d8643f3995efd39e0f2dbc3
+
+
+# {"_id":{"$oid":"5d8643f3995efd39e0f2dbc3"},"name":"Ada Lovelace","number":"040-1231236","__v":{"$numberInt":"0"}}
