@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/rexdavinci/fullstackopen-part3/issues"
   },
-  "homepage": "https://github.com/rexdavinci/fullstackopen-part3#readme",
+  "homepage": "https://sleepy-falls-31795.herokuapp.com",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
